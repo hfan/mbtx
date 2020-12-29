@@ -2520,7 +2520,6 @@ static void checkQuickSelect()
 #endif
 
 uint8_t StickScrollAllowed ;
-uint8_t StickScrollTimer ;
 
 MenuFuncP g_menuStack[MENU_STACK_SIZE];
 uint8_t MenuVertStack[MENU_STACK_SIZE] ;
@@ -3427,10 +3426,6 @@ uint8_t calcStickScroll( uint8_t index )
 		temp = 7 ;			
 	}
 	value = pgm_read_byte(rate+temp) ;
-	if ( value )
-	{
-		StickScrollTimer = STICK_SCROLL_TIMEOUT ;		// Seconds
-	}
 	return value | direction ;
 }
 
@@ -3855,68 +3850,61 @@ static void perMain()
 #endif
 			if ( g_eeGeneral.stickScroll && StickScrollAllowed )
 			{
-			 	if ( StickScrollTimer )
-				{
-					static uint8_t repeater ;
-					uint8_t direction ;
-					uint8_t value ;
-		
-					if ( repeater < 128 )
-					{
-						repeater += 1 ;
-					}
-					value = calcStickScroll( 2 ) ;
-					direction = value & 0x80 ;
-					value &= 0x7F ;
-					if ( value )
-					{
-						if ( repeater > value )
-						{
-							repeater = 0 ;
-							if ( evt == 0 )
-							{
-								if ( direction )
-								{
-									evt = EVT_KEY_FIRST(KEY_UP) ;
-								}
-								else
-								{
-									evt = EVT_KEY_FIRST(KEY_DOWN) ;
-								}
-							}
-						}
-					}
-					else
-					{
-						value = calcStickScroll( 3 ) ;
-						direction = value & 0x80 ;
-						value &= 0x7F ;
-						if ( value )
-						{
-							if ( repeater > value )
-							{
-								repeater = 0 ;
-								if ( evt == 0 )
-								{
-									if ( direction )
-									{
-										evt = EVT_KEY_FIRST(KEY_RIGHT) ;
-									}
-									else
-									{
-										evt = EVT_KEY_FIRST(KEY_LEFT) ;
-									}
-								}
-							}
-						}
-					}
-				}
+                static uint8_t repeater ;
+                uint8_t direction ;
+                uint8_t value ;
+
+                if ( repeater < 128 )
+                {
+                    repeater += 1 ;
+                }
+                value = calcStickScroll( 2 ) ;
+                direction = value & 0x80 ;
+                value &= 0x7F ;
+                if ( value )
+                {
+                    if ( repeater > value )
+                    {
+                        repeater = 0 ;
+                        if ( evt == 0 )
+                        {
+                            if ( direction )
+                            {
+                                evt = EVT_KEY_FIRST(KEY_UP) ;
+                            }
+                            else
+                            {
+                                evt = EVT_KEY_FIRST(KEY_DOWN) ;
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    value = calcStickScroll( 3 ) ;
+                    direction = value & 0x80 ;
+                    value &= 0x7F ;
+                    if ( value )
+                    {
+                        if ( repeater > value )
+                        {
+                            repeater = 0 ;
+                            if ( evt == 0 )
+                            {
+                                if ( direction )
+                                {
+                                    evt = EVT_KEY_FIRST(KEY_RIGHT) ;
+                                }
+                                else
+                                {
+                                    evt = EVT_KEY_FIRST(KEY_LEFT) ;
+                                }
+                            }
+                        }
+                    }
+                }
 			}
-			else
-			{
-				StickScrollTimer = 0 ;		// Seconds
-			}	
-			StickScrollAllowed = 1 ;
+			StickScrollAllowed = checkThrottlePosition(); // allow StickScroll only if no throttle
 
 //			uint8_t *p = GvarSource ;
 //			FORCE_INDIRECT(p) ;
@@ -6102,11 +6090,6 @@ void mainSequence()
 
 		AlarmControl.OneSecFlag = 0 ;
 //		uint8_t i ;
-		
-		if ( StickScrollTimer )
-		{
-			StickScrollTimer -= 1 ;				
-		}
 	}
 }
 #endif

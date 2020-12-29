@@ -912,7 +912,6 @@ void killEvents(uint8_t event)
 volatile uint16_t g_tmr10ms;
 //volatile uint8_t g8_tmr10ms ;
 volatile uint8_t  g_blinkTmr10ms;
-extern uint8_t StickScrollTimer ;
 
 
 void per10ms()
@@ -1051,10 +1050,6 @@ extern uint8_t WdogTimer ;
 	
 	in = ~PINB & 0x7E ;
 	value |= in ;
-	if ( value )
-	{
-		StickScrollTimer = STICK_SCROLL_TIMEOUT ;
-	}
 
 #ifdef SWITCH_MAPPING
 // Read all "extra" inputs to ExtraInputs
