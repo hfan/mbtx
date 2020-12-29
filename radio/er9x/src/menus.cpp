@@ -7262,8 +7262,6 @@ void menuProc0(uint8_t event)
     uint8_t view = g_eeGeneral.view & 0x0f ;
     uint8_t tview = g_eeGeneral.view & 0x70 ;
 
-		StickScrollAllowed = 0 ;
-
  if ( ! PopupData.PopupActive )
  {
     switch(event)
