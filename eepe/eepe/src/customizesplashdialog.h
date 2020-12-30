@@ -4,6 +4,8 @@
 #include <QtGui>
 #include <QDialog>
 
+#include <stdint.h>
+
 namespace Ui {
     class customizeSplashDialog;
 }
