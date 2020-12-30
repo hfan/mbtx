@@ -83,9 +83,9 @@
 #define BIND_OPTIONS	1
 #endif
 
-#if defined(CPUM128) || defined(CPUM2561)
+//#if defined(CPUM128) || defined(CPUM2561)
 #define DSM_BIND_RESPONSE		1
-#endif
+//#endif
 
 #if defined(CPUM128) || defined(CPUM2561)
 #define EXTEND_SCALERS		1
