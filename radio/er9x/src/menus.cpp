@@ -11969,7 +11969,8 @@ void menuSetFailsafe(uint8_t event)
 const prog_char APM M_FLYSKY_STR[] = { 4, 6, 'F','l','y','s','k','y','V','9','x','9',' ',' ','V','6','x','6',' ',' ','V','9','1','2',' ',' ','C','X','2','0',' ',' ' } ;
 const prog_char APM M_HUBSAN_STR[] = { 2, 4, 'H','1','0','7','H','3','0','1','H','5','0','1' } ;
 const prog_char APM M_HISKY_STR[] = { 1, 5, 'H','i','s','k','y','H','K','3','1','0'} ;
-#if defined(CPUM128) || defined(CPUM2561)
+//#if defined(CPUM128) || defined(CPUM2561)
+#if 1
 const prog_char APM M_DSM2_STR[] = { 4, 7, 'D','S','M','2','-','2','2','D','S','M','2','-','1','1','D','S','M','X','-','2','2','D','S','M','X','-','1','1','A','U','T','O',' ',' ',' ' } ;
 #else
 const prog_char APM M_DSM2_STR[] = { 3, 7, 'D','S','M','2','-','2','2','D','S','M','2','-','1','1','D','S','M','X','-','2','2','D','S','M','X','-','1','1' } ;
