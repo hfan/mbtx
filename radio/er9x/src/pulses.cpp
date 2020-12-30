@@ -1239,7 +1239,11 @@ void setupPulsesSerial(void)
 		__uint24 outputbits = 0 ;
 		uint8_t i ;
 #ifdef MULTI_PROTOCOL
+#ifdef SBUS_PROTOCOL
 		if ( protocol == PROTO_SBUS )
+#else
+        if ( false )
+#endif // SBUS_PROTOCOL
 #endif // MULTI_PROTOCOL
 			sendByteSerial(0x0F) ;
 #ifdef MULTI_PROTOCOL
@@ -1339,7 +1343,11 @@ void setupPulsesSerial(void)
 			}
 		}
 #ifdef MULTI_PROTOCOL
+#ifdef SBUS_PROTOCOL
 		if ( protocol == PROTO_SBUS )
+#else
+        if ( false )
+#endif // SBUS_PROTOCOL
 #endif // MULTI_PROTOCOL
 		{
 			sendByteSerial(0);

@@ -104,8 +104,9 @@
 //#endif
 
 #ifndef NMEA
-#define SBUS_PROTOCOL	1
+//#define SBUS_PROTOCOL	1
 #endif
+#undef SBUS_PROTOCOL
 
 // Bits in SystemOptions
 #define SYS_OPT_HARDWARE_EDIT	1
