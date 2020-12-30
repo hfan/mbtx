@@ -71,8 +71,9 @@
 #endif
 
 //#if defined(CPUM128) || defined(CPUM2561) || defined(V2)
-#define R9M_SUPPORT		1
+//#define R9M_SUPPORT		1
 //#endif
+#undef R9M_SUPPORT
 
 #if defined(CPUM128) || defined(CPUM2561)
 #define XYCURVE		1
