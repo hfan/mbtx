@@ -1886,7 +1886,7 @@ void menuProcCurve(uint8_t event)
 	TITLEP(Str_Curves) ;
 //	static MState2 mstate2 ;
   int8_t sub ;
-#if defined(CPUM128) || defined(CPUM2561)
+#if XYCURVE
 		sub = check_columns(event,1+MAX_CURVE5+MAX_CURVE9-1-1+1) ;
 #else
 		sub = check_columns(event,1+MAX_CURVE5+MAX_CURVE9-1-1) ;
@@ -4139,7 +4139,7 @@ void menuProcMixOne(uint8_t event)
 								put_curve( 2*FW, y, md2->curve, attr ) ;
           	  	if(attr)
 								{
-#if defined(CPUM128) || defined(CPUM2561)
+#if XYCURVE
 									CHECK_INCDEC_H_MODELVAR( md2->curve, -MAX_CURVE5-MAX_CURVE9-1 , MAX_CURVE5+MAX_CURVE9+7-1+1);
 #else
 									CHECK_INCDEC_H_MODELVAR( md2->curve, -MAX_CURVE5-MAX_CURVE9 , MAX_CURVE5+MAX_CURVE9+7-1);
