@@ -39,13 +39,14 @@
 #define GLOBAL_COUNTDOWN	1
 #endif
 
-#if defined(CPUM2561)
-//#if defined(CPUM128) || defined(CPUM2561)
+//#if defined(CPUM2561)
+////#if defined(CPUM128) || defined(CPUM2561)
+//#define THROTTLE_TRACE		1
+//#else
+//#define THROTTLE_TRACE		0
+////#endif // 128/2561
+//#endif // 2561
 #define THROTTLE_TRACE		1
-#else
-#define THROTTLE_TRACE		0
-//#endif // 128/2561
-#endif // 2561
 
 union t_xmem Xmem ;
 
