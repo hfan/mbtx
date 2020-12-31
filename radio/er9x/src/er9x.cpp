@@ -3792,7 +3792,7 @@ static void perMain()
 					  }
 					}
 #else
-	#if defined(CPUM128) || defined(CPUM2561)
+	#if defined(GVAR_SWITCH)
 					// GVARS adjust
 					for( uint8_t i = 0 ; i < MAX_GVARS ; i += 1 )
 					{
@@ -3928,7 +3928,7 @@ static void perMain()
 						}
 					}
 #else
-	#if defined(CPUM128) || defined(CPUM2561)
+	#if defined(GVAR_SWITCH)
 					if ( g_model.gvswitch[i] )
 					{
 						if ( !getSwitch00( g_model.gvswitch[i] ) )

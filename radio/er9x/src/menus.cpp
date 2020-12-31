@@ -2854,7 +2854,7 @@ void menuProcGlobals(uint8_t event)
   }
  if ( subN < 7 )
  {
-#if defined(CPUM128) || defined(CPUM2561)
+#if defined(GVAR_SWITCH)
 	Columns = 2 ;
 #else
 	Columns = 1 ;
@@ -2906,7 +2906,7 @@ void menuProcGlobals(uint8_t event)
 			}
 		}
 #else // V2
-#if defined(CPUM128) || defined(CPUM2561)
+#if defined(GVAR_SWITCH)
 		for(uint8_t j=0 ; j<3 ; j++)
 		{
       uint8_t attr = ((subN==i && subSub==j) ? InverseBlink : 0);
