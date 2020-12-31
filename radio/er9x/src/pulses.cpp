@@ -66,7 +66,7 @@ void set_timer3_capture( void ) ;
 void set_timer3_ppm( void ) ;
 //void setupPulsesPPM16( uint8_t proto ) ;
 void setupPulsesPPM( uint8_t proto ) ;
-static void setupPulsesPXX( void ) ;
+//static void setupPulsesPXX( void ) ;
 static void sendByteSerial(uint8_t b) ;
 
 //uint16_t PulseTotal ;
@@ -222,19 +222,6 @@ void setupPulses()
             set_timer3_capture() ;
 						setPpmTimers() ;
             break;
-        case PROTO_PXX:
-            set_timer3_capture() ;
-            OCR1B = 7000 ;		// Next frame starts in 3.5 mS
-            OCR1C = 4000 ;		// Next frame setup in 2 mS
-#ifdef CPUM2561
-            TIMSK1 |= (1<<OCIE1B) | (1<<OCIE1C);	// Enable COMPB and COMPC
-#else
-            TIMSK |= (1<<OCIE1B) ;	// Enable COMPB
-            ETIMSK |= (1<<OCIE1C);	// Enable COMPC
-#endif
-            TCCR1A  = 0;
-            TCCR1B  = (2<<CS10);      //ICNC3 16MHz / 8
-            break;
 #ifdef MULTI_PROTOCOL
         case PROTO_MULTI:
 #endif // MULTI_PROTOCOL
@@ -274,10 +261,6 @@ void setupPulses()
     {
     case PROTO_PPM:
         setupPulsesPPM( PROTO_PPM );		// Don't enable interrupts through here
-        break;
-    case PROTO_PXX:
-        sei() ;							// Interrupts allowed here
-        setupPulsesPXX();
         break;
 #ifdef MULTI_PROTOCOL
     case PROTO_MULTI:
@@ -428,7 +411,6 @@ ISR(TIMER1_COMPC_vect) // DSM2&MULTI or PXX end of frame
 //    if (g_model.protocol == PROTO_DSM2)
 //#endif // SBUS_PROTOCOL
 //#endif // MULTI_PROTOCOL
-	if ( g_model.protocol != PROTO_PXX)
 	{
 		// DSM2
 		uint16_t t = 41536 ; //next frame starts in 22 msec 41536 = 2*(22000 - 14*11*8)
@@ -450,10 +432,6 @@ ISR(TIMER1_COMPC_vect) // DSM2&MULTI or PXX end of frame
        OCR1C=200;
        setupPulses();
  		}
-  }
-  else		// must be PXX
-  {
-    setupPulses() ;
   }
 }
 
@@ -658,6 +636,7 @@ void putPcmPart( uint8_t value )
 }
 
 
+/*
 static void putPcmFlush()
 {
   while ( PcmControl.PcmBitCount != 0 )
@@ -667,6 +646,7 @@ static void putPcmFlush()
   *PcmControl.PcmPtr = 0 ;				// Mark end
 	asm("") ;
 }
+*/
 
 void putPcmBit( uint8_t bit )
 {
@@ -721,6 +701,7 @@ uint16_t scaleForPXX( uint8_t i )
 }
 
 
+/*
 static void setupPulsesPXX()
 {
     uint8_t i ;
@@ -937,6 +918,7 @@ static void setupPulsesPXX()
 //		PxxTime = TCNT1 - PxxStart ;
 	asm("") ;
 }
+*/
 
 
 // DSM2 protocol pulled from th9x - Thanks thus!!!

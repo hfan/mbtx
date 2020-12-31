@@ -241,14 +241,6 @@ extern uint8_t indexSwitch( uint8_t index ) ;
 
 void putsAttIdxTelemItems( uint8_t x, uint8_t y, uint8_t index, uint8_t attr )
 {
-	if ( index == 4 )
-	{
-		if ( g_model.protocol == PROTO_PXX )
-		{
-			lcd_putsAtt( x, y, PSTR("SWR "), attr ) ;
-			return ;
-		}
-	}
 	lcd_putsAttIdx( x, y, Str_telemItems, index, attr ) ;
 
 }
@@ -1230,7 +1222,7 @@ uint8_t hyphinvMenuItem( uint8_t value, uint8_t y, uint8_t condition )
 
 void putsTxStr( uint8_t x, uint8_t y )
 {
-	lcd_putsAttIdx( x, y, Str_TXeq, ( g_model.protocol == PROTO_PXX ), 0 ) ;
+	lcd_putsAttIdx( x, y, Str_TXeq, false, 0 ) ;
 }
 
 void putsOffDecimal( uint8_t x, uint8_t y, uint16_t value, uint8_t attr )
@@ -13131,24 +13123,6 @@ extern uint8_t getExpectedSwitchState( uint8_t i ) ;
 			
 			uint8_t dataItems = 4 ;
 			uint8_t protocol = g_model.protocol ;
-			if (protocol == PROTO_PXX)
-			{
-//#if defined(CPUM128) || defined(CPUM2561)
-#ifdef FAILSAFE  			
-				dataItems = 8 ;
-#else
-				dataItems = 7 ;
-#endif
-//#else
-//				dataItems = 6 ;
-//#endif
-//#if defined(CPUM128) || defined(CPUM2561) || defined(V2)
-//				if ( g_model.sub_protocol == 3 )	// R9M
-//				{
-//					dataItems += 1 ;
-//				}
-//#endif
-			}
 #ifdef MULTI_PROTOCOL
 			if (protocol == PROTO_MULTI)
 			{
@@ -13802,7 +13776,7 @@ static uint8_t multiUpdateTimer ;
 			}
 #endif // MULTI_PROTOCOL
 
-			if (protocol == PROTO_PXX)
+			if (false) //if (protocol == PROTO_PXX)
 			{
 				lcd_puts_Pleft( y, PSTR(STR_PXX_TYPE) ) ;
 #if defined(R9M_SUPPORT)
