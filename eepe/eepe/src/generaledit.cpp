@@ -112,7 +112,6 @@ GeneralEdit::GeneralEdit(EEPFILE *eFile, QWidget *parent) :
     ui->stickmodeCB->setCurrentIndex(p_eeGeneral->stickMode);
     
 		ui->volumeSB->setValue(p_eeGeneral->volume+7);
-    ui->enablePpmsimChkB->setChecked(p_eeGeneral->enablePpmsim);
 #ifndef V2
     ui->internalFrskyAlarmChkB->setChecked(p_eeGeneral->frskyinternalalarm);
 #else
@@ -554,12 +553,6 @@ void GeneralEdit::on_inactimerSB_editingFinished()
 void GeneralEdit::on_thrrevChkB_stateChanged(int )
 {
     p_eeGeneral->throttleReversed = ui->thrrevChkB->isChecked() ? 1 : 0;
-    updateSettings();
-}
-
-void GeneralEdit::on_enablePpmsimChkB_stateChanged(int )
-{
-    p_eeGeneral->enablePpmsim = ui->enablePpmsimChkB->isChecked() ? 1 : 0;
     updateSettings();
 }
 

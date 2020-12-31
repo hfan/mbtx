@@ -111,7 +111,6 @@ private slots:
     void on_BandGapEnableChkB_stateChanged(int );
     void on_splashScreenNameChkB_stateChanged(int );
     void on_backlightStickMove_editingFinished();
-		void on_enablePpmsimChkB_stateChanged(int );
 		void on_internalFrskyAlarmChkB_stateChanged(int );
 		void on_backlightinvertChkB_stateChanged(int );
     void on_switchDefPos_1_stateChanged(int );
