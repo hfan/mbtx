@@ -10475,6 +10475,7 @@ Str_Hardware
 			subN += 1 ;
 #endif
 		 
+#ifndef NO_SPLASH_SCREEN
       uint8_t b = g_eeGeneral.disableSplashScreen;
       g_eeGeneral.disableSplashScreen = offonMenuItem( b, y, PSTR(STR_SPLASH_SCREEN"\037"STR_SPLASH_NAME), subN ) ;
   		y += FH ;
@@ -10484,11 +10485,11 @@ Str_Hardware
       g_eeGeneral.hideNameOnSplash = offonItem( b, y, subN ) ;
   		y += FH ;
 			subN += 1 ;
+#endif
 
 
 #ifndef NOPOTSCROLL
-      b = g_eeGeneral.disablePotScroll ;
-      g_eeGeneral.disablePotScroll = offonMenuItem( b, y, PSTR(STR_POTSCROLL), subN ) ;
+      g_eeGeneral.disablePotScroll = offonMenuItem(g_eeGeneral.disablePotScroll, y, PSTR(STR_POTSCROLL), subN ) ;
   		y += FH ;
 			subN += 1 ;
 #endif

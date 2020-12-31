@@ -103,6 +103,7 @@
 #define VIRTUAL_KEYBOARD 1
 //#endif
 
+#define NO_SPLASH_SCREEN
 
 //#define NOSAFETY_A_OR_V
 //#define NOSAFETY_VOICE

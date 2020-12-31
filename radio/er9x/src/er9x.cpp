@@ -22,6 +22,7 @@
 #include "menus.h"
 #include "voice.h"
 
+#ifndef NO_SPLASH_SCREEN
 // Next two lines swapped as new complier/linker reverses them in memory!
 const
 #ifdef REMOVE_FROM_64FRSKY
@@ -33,6 +34,7 @@ const prog_uchar APM s9xsplashMarker[] = {
 #include "s9xsplash.lbm"
 #include "splashmarker.h"
 #endif
+#endif // NO_SPLASH_SCREEN
 
 #if defined(CPUM128) || defined(CPUM2561)
 const uint8_t 
@@ -1413,6 +1415,7 @@ uint16_t stickMoveValue()
 }
 
 
+#ifndef NO_SPLASH_SCREEN
 const prog_uint8_t APM DoubleBits[] = {
 	0x00, 0x03, 0x0C, 0x0F,
 	0x30, 0x33, 0x3C, 0x3F,
@@ -1508,6 +1511,7 @@ where( 'X' ) ;
         } while(tgtime != get_tmr10ms()) ;
     }
 }
+#endif // NO_SPLASH_SCREEN
 
 static void checkMem()
 {
@@ -4799,6 +4803,7 @@ extern uint8_t serialDat0 ;
     
   if ( ( mcusr & (1<<WDRF) ) == 0 )
 	{
+#ifndef NO_SPLASH_SCREEN
 		if(!g_eeGeneral.disableSplashScreen)
     {
 	    if( g_eeGeneral.speakerMode )		// Not just beeper
@@ -4807,6 +4812,7 @@ extern uint8_t serialDat0 ;
       }
   	  doSplash();
     }
+#endif // NO_SPLASH_SCREEN
 #ifdef WHERE_DEBUG
 where( 'A' ) ;
 #endif
