@@ -813,11 +813,6 @@
            </item>
            <item>
             <property name="text">
-             <string>DSM2</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
              <string>MULTI</string>
             </property>
            </item>

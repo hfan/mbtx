@@ -1007,25 +1007,6 @@ void ModelEdit::setProtocolBoxes()
         ui->numChannelsSB->setValue(8);
         ui->ppmFrameLengthDSB->setValue(22.5);
         break;
-    case (PROTO_DSM2):
-        ui->MultiOptionSB->setEnabled(false);
-        ui->ppmDelaySB->setEnabled(false);
-        ui->numChannelsSB->setEnabled(false);
-        ui->ppmFrameLengthDSB->setEnabled(false);
-        ui->DSM_Type->show() ;
-        ui->SubProtocolCB->hide() ;
-        ui->SubSubProtocolCB->hide() ;
-        ui->pxxRxNum->setEnabled(false);
-
-        ui->DSM_Type->setCurrentIndex(g_model.sub_protocol);
-
-        ui->pxxRxNum->setValue(1);
-        ui->ppmDelaySB->setValue(300);
-        ui->numChannelsSB->setValue(8);
-        ui->ppmFrameLengthDSB->setValue(22.5);
-        ui->countryCB->setEnabled(false);
-        ui->typeCB->setEnabled(false);
-        break;
 			
 			case (PROTO_MULTI):
         ui->MultiOptionSB->setEnabled(true);
