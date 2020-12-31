@@ -67,8 +67,11 @@
 
 #if defined(CPUM128) || defined(CPUM2561)
 #define USE_ADJUSTERS		1
-#define FAILSAFE				1
 #endif
+
+//#if defined(CPUM128) || defined(CPUM2561)
+#define FAILSAFE				1
+//#endif
 
 //#if defined(CPUM128) || defined(CPUM2561) || defined(V2)
 //#define R9M_SUPPORT		1
