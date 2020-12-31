@@ -91,6 +91,10 @@
 #define EXTEND_SCALERS		1
 #endif
 
+//#if defined(CPUM128) || defined(CPUM2561)
+#define INPUT_SUBVIEW 1
+//#endif
+
 
 //#define NOSAFETY_A_OR_V
 //#define NOSAFETY_VOICE

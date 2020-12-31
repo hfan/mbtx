@@ -7379,7 +7379,7 @@ void menuProc0(uint8_t event)
         killEvents(event);
         break;
     case EVT_KEY_BREAK(KEY_RIGHT):
-#if defined(CPUM128) || defined(CPUM2561)
+#if defined(INPUT_SUBVIEW)
         if(view <= e_inputs1)
 #else
         if(view == e_inputs1)
@@ -7387,7 +7387,7 @@ void menuProc0(uint8_t event)
 				{
 					int8_t x ;
 					x = inputs_subview ;
-#if defined(CPUM128) || defined(CPUM2561)
+#if defined(INPUT_SUBVIEW)
 					if ( ++x > ((view == e_inputs1) ? 3 : 1) ) x = 0 ;
 #else
  #ifdef V2
@@ -7410,7 +7410,7 @@ void menuProc0(uint8_t event)
           g_eeGeneral.view = e_telemetry | tview ;
 #else
 
-#if defined(CPUM128) || defined(CPUM2561)
+#if defined(INPUT_SUBVIEW)
 					uint8_t t_limit = 0x30 ;
 					tview += 0x10 ;
 					if ( ( g_model.telemetryProtocol == TELEMETRY_ARDUPILOT ) || ( g_model.telemetryProtocol == 2 ) )
@@ -7433,7 +7433,7 @@ void menuProc0(uint8_t event)
 #endif
         break;
     case EVT_KEY_BREAK(KEY_LEFT):
-#if defined(CPUM128) || defined(CPUM2561)
+#if defined(INPUT_SUBVIEW)
         if(view <= e_inputs1)
 #else
         if(view == e_inputs1)
@@ -7441,7 +7441,7 @@ void menuProc0(uint8_t event)
 				{
 					int8_t x ;
 					x = inputs_subview ;
-#if defined(CPUM128) || defined(CPUM2561)
+#if defined(INPUT_SUBVIEW)
 					if ( --x < 0 ) x = (view == e_inputs1) ? 3 : 1 ;
 #else
  #ifdef V2
@@ -7463,7 +7463,7 @@ void menuProc0(uint8_t event)
 					}
           g_eeGeneral.view = e_telemetry | tview ;
 #else
-#if defined(CPUM128) || defined(CPUM2561)
+#if defined(INPUT_SUBVIEW)
 					tview -= 0x10 ;
 					uint8_t t_limit = 0x30 ;
 					if ( g_model.telemetryProtocol == TELEMETRY_ARDUPILOT )
@@ -7608,7 +7608,7 @@ void menuProc0(uint8_t event)
 				if ( i )
 				{
 #ifdef V2
- #if defined(CPUM128) || defined(CPUM2561)
+ #if defined(INPUT_SUBVIEW)
 					if ( g_model.phaseData[i-1].name[0] != ' ' )
 					{
 						lcd_putsnAtt( 6*FW+2, 2*FH, (prog_char *)g_model.phaseData[i-1].name, 6, BSS ) ;
@@ -7719,7 +7719,7 @@ const static prog_uint8_t APM xt[4] = {128*1/4+2, 4, 128-4, 128*3/4-2};
 
     if(view<e_inputs1)
 		{
-#if defined(CPUM128) || defined(CPUM2561)
+#if defined(INPUT_SUBVIEW)
 			if ( inputs_subview > 1 )
 			{
 				inputs_subview = 0 ;
@@ -7732,7 +7732,7 @@ const static prog_uint8_t APM xt[4] = {128*1/4+2, 4, 128-4, 128*3/4-2};
         for(uint8_t i=0; i<8; i++)
         {
             uint8_t x0,y0;
-#if defined(CPUM128) || defined(CPUM2561)
+#if defined(INPUT_SUBVIEW)
 						uint8_t chan = 8 * inputs_subview + i ;
 			      int16_t val = g_chans512[chan];
 #else
@@ -7950,7 +7950,7 @@ const static prog_uint8_t APM xt[4] = {128*1/4+2, 4, 128-4, 128*3/4-2};
 								//              lcd_putsAtt(6, 2*FH, PSTR("To Be Done"), DBLSIZE);
 							}
             }
-#if defined(CPUM128) || defined(CPUM2561)
+#if defined(INPUT_SUBVIEW)
             else if ( tview == TEL_PAGE_4 )
 						{
 						 if ( g_model.telemetryProtocol == TELEMETRY_ARDUPILOT )
