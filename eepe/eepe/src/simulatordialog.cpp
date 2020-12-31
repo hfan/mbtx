@@ -1124,16 +1124,6 @@ void simulatorDialog::setValues()
 				}
 			}
 		}
-		else if ( g_model.protocol == PROTO_PXX )
-		{
-			if ( i >= g_model.ppmStart )
-			{
-				if ( i < g_model.ppmStart + 8 )
-				{
-					onoff[i] = 1 ;				
-				}
-			}
-		}
 	}
   ui->chnout_1->setStyleSheet( onoff[0] ? CRED : CBLUE ) ;
   ui->chnout_2->setStyleSheet( onoff[1] ? CRED : CBLUE ) ;

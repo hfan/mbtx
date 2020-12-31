@@ -962,52 +962,8 @@ void ModelEdit::setProtocolBoxes()
     ui->protocolCB->setCurrentIndex(g_model.protocol);
 		ui->PPM1stChan->setValue( g_model.ppmStart + 1 ) ;
 
-		ui->label_R9Mpower->hide() ;
-		ui->R9MpowerCB->hide() ;
     switch (g_model.protocol)
     {
-    case (PROTO_PXX):
-        ui->MultiOptionSB->setEnabled(false);
-        ui->ppmDelaySB->setEnabled(false);
-        ui->numChannelsSB->setEnabled(false);
-        ui->ppmFrameLengthDSB->setEnabled(false);
-        ui->DSM_Type->hide() ;
-        ui->SubProtocolCB->hide() ;
-        ui->SubSubProtocolCB->hide() ;
-        ui->pxxRxNum->setEnabled(true);
-        ui->countryCB->setEnabled(true);
-        ui->typeCB->setEnabled(true);
-
-				if ( g_model.sub_protocol == 3 )	// R9M
-				{
-					ui->R9MpowerCB->clear();
-					if ( g_model.country == 2 )
-					{
-						ui->R9MpowerCB->addItem("25 mW(8ch)") ;
-						ui->R9MpowerCB->addItem("25 mW(16ch)") ;
-						ui->R9MpowerCB->addItem("200 mW") ;
-						ui->R9MpowerCB->addItem("500 mW") ;
-					}
-					else
-					{
-						ui->R9MpowerCB->addItem("10 mW") ;
-						ui->R9MpowerCB->addItem("100 mW") ;
-						ui->R9MpowerCB->addItem("500 mW") ;
-						ui->R9MpowerCB->addItem("1000 mW") ;
-					}
-					ui->R9MpowerCB->setCurrentIndex(g_model.r9mPower) ;
-					ui->label_R9Mpower->show() ;
-					ui->R9MpowerCB->show() ;
-				}
-
-        ui->pxxRxNum->setValue(g_model.ppmNCH);
-
-        ui->DSM_Type->setCurrentIndex(0);
-        ui->ppmDelaySB->setValue(300);
-        ui->numChannelsSB->setValue(8);
-        ui->ppmFrameLengthDSB->setValue(22.5);
-        break;
-			
 			case (PROTO_MULTI):
         ui->MultiOptionSB->setEnabled(true);
         ui->ppmDelaySB->setEnabled(false);
@@ -1024,8 +980,6 @@ void ModelEdit::setProtocolBoxes()
         }
         ui->pxxRxNum->setEnabled(true);
         ui->pxxRxNum->setValue(g_model.ppmNCH & 0x0F);
-        ui->typeCB->setEnabled(false);
-        ui->countryCB->setEnabled(false);
 //				ui->startChannelsSB->setEnabled(true);
 				ui->pulsePolCB->setEnabled(false);
 				ui->MultiOptionSB->setValue(g_model.option_protocol) ;
@@ -1047,12 +1001,8 @@ void ModelEdit::setProtocolBoxes()
 
         ui->pxxRxNum->setValue(1);
         ui->DSM_Type->setCurrentIndex(0);
-        ui->countryCB->setEnabled(false);
-        ui->typeCB->setEnabled(false);
         break;
     }
-	  ui->countryCB->setCurrentIndex(g_model.country) ;
-	  ui->typeCB->setCurrentIndex(g_model.sub_protocol) ;
     protocolEditLock = false;
 }
 
@@ -4665,31 +4615,6 @@ void ModelEdit::on_protocolCB_currentIndexChanged(int index)
     setProtocolBoxes();
 
     updateSettings();
-}
-
-void ModelEdit::on_R9MpowerCB_currentIndexChanged(int index)
-{
-  if(protocolEditLock) return;
-	g_model.r9mPower = index;
-  setProtocolBoxes();
-
-  updateSettings();
-}
-
-void ModelEdit::on_countryCB_currentIndexChanged(int index)
-{
-  if(protocolEditLock) return;
-  g_model.country = index ;
-  setProtocolBoxes();
-  updateSettings();
-}
-	
-void ModelEdit::on_typeCB_currentIndexChanged(int index)
-{
-  if(protocolEditLock) return;
-  g_model.sub_protocol = index ;
-  setProtocolBoxes();
-  updateSettings();
 }
 
 void ModelEdit::on_timerValTE_editingFinished()

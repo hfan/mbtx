@@ -428,9 +428,8 @@ enum EnumKeys {
 #define MAX_ALERT_TIME   60
 
 #define PROTO_PPM        0
-#define PROTO_PXX        1
-#define PROTO_MULTI			 2
-#define PROT_MAX         2
+#define PROTO_MULTI			 1
+#define PROT_MAX         1
 #define PROT_STR "PPM   PXX   DSM2  PPM16 "
 #define PROT_STR_LEN     6
 #define DSM2_STR "LP4/LP5  DSM2only DSM2/DSMX"
