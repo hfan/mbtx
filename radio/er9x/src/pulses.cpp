@@ -241,7 +241,6 @@ void setupPulses()
 #ifdef SBUS_PROTOCOL	
         case PROTO_SBUS:
 #endif // SBUS_PROTOCOL
-        case PROTO_DSM2:
             set_timer3_capture() ;
             OCR1C = 200 ;			// 100 uS
             TCNT1 = 300 ;			// Past the OCR1C value
@@ -286,7 +285,6 @@ void setupPulses()
 #ifdef SBUS_PROTOCOL	
     case PROTO_SBUS:
 #endif // SBUS_PROTOCOL
-    case PROTO_DSM2:
         sei() ;							// Interrupts allowed here
         setupPulsesSerial(); 
         break;
@@ -1093,7 +1091,6 @@ static void sendByteSerial(uint8_t b) //max 10changes 0 10 10 10 10 1
 	uint8_t count = 8 ;
 #if defined(SBUS_PROTOCOL) || defined(MULTI_PROTOCOL)
 	uint8_t bitLen ;
-	if ( g_model.protocol != PROTO_DSM2 )
 	{ // SBUS & MULTI
 		parity = 0 ;
 		bitLen = b ;
@@ -1157,7 +1154,7 @@ void setupPulsesSerial(void)
 	serialdat0copy = serialDat0 ;		// Fetch byte once, saves flash
 #if defined(SBUS_PROTOCOL) || defined(MULTI_PROTOCOL)
 	uint8_t protocol = g_model.protocol ;
-	if( protocol == PROTO_DSM2)
+	if( false ) // if( protocol == PROTO_DSM2)
 	{
 #endif // SBUS_PROTOCOL & MULTI_PROTOCOL
 		pass_bitlen = BITLEN_SERIAL ;

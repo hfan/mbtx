@@ -710,36 +710,35 @@ uint8_t IS_EXPO_THROTTLE( uint8_t x ) ;
 #define PROTO_NONE       0xFF
 #define PROTO_PPM        0
 #define PROTO_PXX        1
-#define PROTO_DSM2       2
 
 #ifdef MULTI_PROTOCOL
-#define PROTO_MULTI      3
- #ifdef SBUS_PROTOCOL	
-#define PROTO_SBUS       4
-#define PROT_MAX         4
- #else
-#define PROT_MAX         3
- #endif // SBUS_PROTOCOL
-#else
+#define PROTO_MULTI      2
  #ifdef SBUS_PROTOCOL	
 #define PROTO_SBUS       3
 #define PROT_MAX         3
  #else
 #define PROT_MAX         2
  #endif // SBUS_PROTOCOL
+#else
+ #ifdef SBUS_PROTOCOL	
+#define PROTO_SBUS       2
+#define PROT_MAX         2
+ #else
+#define PROT_MAX         1
+ #endif // SBUS_PROTOCOL
 #endif // MULTI_PROTOCOL
 
 #ifdef MULTI_PROTOCOL
  #ifdef SBUS_PROTOCOL	
-#define PROT_STR "\006PPM   XJT   DSM2  MULTI SBUS  "
+#define PROT_STR "\006PPM   XJT   MULTI SBUS  "
  #else
-#define PROT_STR "\006PPM   XJT   DSM2  MULTI "
+#define PROT_STR "\006PPM   XJT   MULTI "
  #endif // SBUS_PROTOCOL
 #else
  #ifdef SBUS_PROTOCOL	
-#define PROT_STR "\006PPM   XJT   DSM2  SBUS  "
+#define PROT_STR "\006PPM   XJT   SBUS  "
  #else
-#define PROT_STR "\006PPM   XJT   DSM2  "
+#define PROT_STR "\006PPM   XJT   "
  #endif // SBUS_PROTOCOL
 #endif // MULTI_PROTOCOL
 

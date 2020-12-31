@@ -6484,8 +6484,6 @@ void trace()   // called in perOut - once envery 0.01sec
     s_time= t10ms ;
 #endif // THROTTLE_TRACE
  
-	if ( (g_model.protocol==PROTO_DSM2) && getSwitch00(MAX_DRSWITCH-1) ) audioDefevent(AU_TADA);   //DSM2&MULTI bind mode warning
-
 #if THROTTLE_TRACE
     val   = tracePtr->s_sum/tracePtr->s_cnt;
     tracePtr->s_sum = 0;
@@ -13151,10 +13149,6 @@ extern uint8_t getExpectedSwitchState( uint8_t i ) ;
 //				}
 //#endif
 			}
-			if ( protocol == PROTO_DSM2 )
-			{
-				dataItems = 3 ;
-			}
 #ifdef MULTI_PROTOCOL
 			if (protocol == PROTO_MULTI)
 			{
@@ -13807,14 +13801,6 @@ static uint8_t multiUpdateTimer ;
 #endif
 			}
 #endif // MULTI_PROTOCOL
-			if (protocol == PROTO_DSM2)
-			{
-  		  lcd_puts_Pleft(    y, PSTR(STR_DSM_TYPE));
-				
-				g_model.sub_protocol = checkIndexedV( y, PSTR(FWx10"\002"DSM2_STR), g_model.sub_protocol, subN ) ;
-				y += FH ;
-				subN++;
-			}
 
 			if (protocol == PROTO_PXX)
 			{
