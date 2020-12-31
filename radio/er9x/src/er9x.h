@@ -75,9 +75,9 @@
 //#endif
 #undef R9M_SUPPORT
 
-//#if defined(CPUM128) || defined(CPUM2561)
+#if defined(CPUM128) || defined(CPUM2561)
 #define XYCURVE		1
-//#endif
+#endif
 
 #if defined(CPUM128) || defined(CPUM2561)
 #define BIND_OPTIONS	1
