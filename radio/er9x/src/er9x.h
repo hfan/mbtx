@@ -99,6 +99,10 @@
 #define GVAR_SWITCH 1
 //#endif
 
+//#if defined(CPUM128) || defined(CPUM2561)
+#define VIRTUAL_KEYBOARD 1
+//#endif
+
 
 //#define NOSAFETY_A_OR_V
 //#define NOSAFETY_VOICE
@@ -1524,7 +1528,7 @@ union t_xmem
 	char buf[sizeof(g_model.name)+5];
 	ExpoData texpoData[4] ;
 	struct t_backup_restore restoreData ;
-#if defined(CPUM128) || defined(CPUM2561)
+#if defined(VIRTUAL_KEYBOARD)
 	struct t_alpha Alpha ;
 #endif
 	struct t_stickCentre stickCentreData ;

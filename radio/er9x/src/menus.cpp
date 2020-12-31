@@ -59,7 +59,7 @@ struct t_menuControl
 	uint8_t SubmenuIndex ;
 	uint8_t LastSubmenuIndex ;
 	uint8_t UseLastSubmenuIndex ;
-#if defined(CPUM128) || defined(CPUM2561)
+#if defined(VIRTUAL_KEYBOARD)
 	uint8_t SubMenuCall ;
 #endif
 } MenuControl ;
@@ -1064,7 +1064,7 @@ int8_t qRotary()
 	return diff ;
 }
 
-#if defined(CPUM128) || defined(CPUM2561)
+#if defined(VIRTUAL_KEYBOARD)
 
 void validateText( uint8_t *text, uint8_t length )
 {
@@ -2659,7 +2659,7 @@ void menuScaleOne(uint8_t event)
   			if( attr ) CHECK_INCDEC_H_MODELVAR_0( pscaler->source, NUM_XCHNRAW+NUM_TELEM_ITEMS ) ;
 			break ;
 			case 1 :	// name
-#if defined(CPUM128) || defined(CPUM2561)
+#if defined(VIRTUAL_KEYBOARD)
 				alphaEditName( 11*FW-2, y, (uint8_t *)pscaler->name, sizeof(pscaler->name), attr, (char *)PSTR( "Scaler Name") ) ;
 #else
 				if ( attr )
@@ -5371,7 +5371,7 @@ void menuPhaseOne(uint8_t event)
 			break ;
 
 #ifdef V2
-#if defined(CPUM128) || defined(CPUM2561)
+#if defined(VIRTUAL_KEYBOARD)
 			case 4 : // Phase Name
 				alphaEditName( 11*FW-2, y, (uint8_t *)phase->name, sizeof(phase->name), attr, (char *)PSTR( "Mode Name") ) ;
 			break ;
@@ -5379,7 +5379,7 @@ void menuPhaseOne(uint8_t event)
 #else
 //#if defined(CPUM128) || defined(CPUM2561)
 			case 4 : // Phase Name
-#if defined(CPUM128) || defined(CPUM2561)
+#if defined(VIRTUAL_KEYBOARD)
 				alphaEditName( 11*FW-2, y, (uint8_t *)g_model.phaseNames[s_currIdx], sizeof(g_model.phaseNames[0]), attr, (char *)PSTR( "Mode Name") ) ;
 #else			
 				if ( attr )
@@ -6862,7 +6862,7 @@ void resetTimern( uint8_t timer )
 }
 
 
-#if defined(CPUM128) || defined(CPUM2561)
+#if defined(VIRTUAL_KEYBOARD)
 static uint8_t Caps = 0 ;
 
 void displayKeys( uint8_t x, uint8_t y, const char *text, uint8_t count )
@@ -6878,7 +6878,7 @@ void displayKeys( uint8_t x, uint8_t y, const char *text, uint8_t count )
 			}
 		}
 		lcd_putc( x+1, y, c ) ;
-		lcd_rect( x-2, y-1, 11, 10 ) ;
+//		lcd_rect( x-2, y-1, 11, 10 ) ;
 		count -= 1 ;
 		x += 10 ;
 	}
@@ -9865,7 +9865,7 @@ static uint8_t indexProcess( uint8_t event, uint8_t *pmstate, uint8_t extra )
 	if (event == EVT_ENTRY_UP)
 	{
 		*pmstate = mc->SubmenuIndex - 1 ;
-#if defined(CPUM128) || defined(CPUM2561)
+#if defined(VIRTUAL_KEYBOARD)
 		if ( mc->SubMenuCall )
 		{
 			*pmstate = mc->SubMenuCall & 0x1F ;
@@ -10375,7 +10375,7 @@ Str_Hardware
       	for(uint8_t i=0; i<4; i++)
 				{
       		lcd_putsAttIdx( FW*5, y, modi12x3, i, 0 ) ;
-#if defined(CPUM128) || defined(CPUM2561)
+#if defined(VIRTUAL_KEYBOARD)
 					if ( sub == subN )
 					{
 						MenuControl.SubMenuCall = 0x80 + i + 6 ;
@@ -10456,7 +10456,7 @@ Str_Hardware
 			IlinesCount = 5 ;
 #endif		 
 #endif		 
-#if defined(CPUM128) || defined(CPUM2561)
+#if defined(VIRTUAL_KEYBOARD)
 			MenuControl.SubMenuCall = 0x80 ;
 			alphaEditName( 11*FW-2, y, (uint8_t *)g_eeGeneral.ownerName, sizeof(g_eeGeneral.ownerName), sub==subN, (char *)PSTR( "Owner Name") ) ;
 #else
@@ -12169,7 +12169,7 @@ Str_Protocol
 		  
 			if ( sub < 6 )
 			{
-#if defined(CPUM128) || defined(CPUM2561)
+#if defined(VIRTUAL_KEYBOARD)
 				MenuControl.SubMenuCall = 0x80 ;
 				alphaEditName( 11*FW-2, y, (uint8_t *)g_model.name, sizeof(g_model.name), sub==subN, (char *)PSTR( "Model Name") ) ;
 #else
@@ -12425,7 +12425,7 @@ extern uint8_t getExpectedSwitchState( uint8_t i ) ;
       	for(uint8_t i=0; i<4; i++)
 				{
       		lcd_putsAttIdx( FW*5, y, modi12x3, i, 0 ) ;
-#if defined(CPUM128) || defined(CPUM2561)
+#if defined(VIRTUAL_KEYBOARD)
 					if ( sub == subN )
 					{
 						MenuControl.SubMenuCall = 0x80 + i + 15 ;
