@@ -11,9 +11,9 @@
 //const char APM  stamp5[] = " MOD: " MOD_VERS;
 
 
-const char APM Stamps[] = "VERS: V" DEFNUMSTR(VERS) "." DEFNUMSTR(SUB_VERS) "\037"\
+const char APM Stamps[] = "VERS: er9x-v" DEFNUMSTR(VERS) "." DEFNUMSTR(SUB_VERS) "\037"\
 "DATE: " DATE_STR "\037"\
 "TIME: " TIME_STR "\037"\
-" SVN: " SVN_VERS "\037"\
+" GIT: " SVN_VERS "\037"\
 " MOD: " MOD_VERS;
 
