@@ -13182,7 +13182,7 @@ extern uint8_t getExpectedSwitchState( uint8_t i ) ;
 			subN++;
 
 			uint8_t ppmTypeProto = 0 ;
-  		if( ( protocol == PROTO_PPM ) || (protocol == PROTO_PPM16) )
+  		if( protocol == PROTO_PPM )
 			{
 				ppmTypeProto = 1 ;
 			}
