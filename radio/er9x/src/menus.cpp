@@ -7520,7 +7520,7 @@ void menuProc0(uint8_t event)
 				g_eeGeneral.view = view | tview ;
         audioDefevent(AU_MENUS);
 #else
-        pushMenu(menuProcStatistic);
+        pushMenu(menuProcModelIndex);
 #endif
         killEvents(event);
 				return ;
