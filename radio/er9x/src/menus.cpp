@@ -10294,7 +10294,7 @@ Str_Hardware
 			if ( sub < 6 )
 			{
 				displayNext() ;
-      	lcd_puts_Pleft( y,PSTR(STR_CROSSTRIM"\037"STR_THR_REVERSE"\037"STR_ENABLE_PPMSIM"\037"STR_CHAN_ORDER"\037"STR_MODE));
+      	lcd_puts_Pleft( y,PSTR(STR_CROSSTRIM"\037"STR_THR_REVERSE"\037"STR_CHAN_ORDER"\037"STR_MODE));
 				g_eeGeneral.crosstrim = onoffItem( g_eeGeneral.crosstrim, y, subN) ;
   			y += FH ;
 				subN += 1 ;
@@ -10305,10 +10305,6 @@ Str_Hardware
 				{
   				checkTHR() ;
 				}
-  			y += FH ;
-				subN += 1 ;
-
-      	g_eeGeneral.enablePpmsim = onoffItem( g_eeGeneral.enablePpmsim, y, subN ) ;
   			y += FH ;
 				subN += 1 ;
 
@@ -13186,7 +13182,7 @@ extern uint8_t getExpectedSwitchState( uint8_t i ) ;
 			subN++;
 
 			uint8_t ppmTypeProto = 0 ;
-  		if( ( protocol == PROTO_PPM ) || (protocol == PROTO_PPM16) || (protocol == PROTO_PPMSIM) )
+  		if( ( protocol == PROTO_PPM ) || (protocol == PROTO_PPM16) )
 			{
 				ppmTypeProto = 1 ;
 			}

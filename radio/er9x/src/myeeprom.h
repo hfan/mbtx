@@ -174,7 +174,7 @@ PACK(typedef struct t_EEGeneral {
     uint8_t   unused2:4;
 #endif
     uint8_t   hideNameOnSplash:1;
-    uint8_t   enablePpmsim:1;
+    uint8_t   enablePpmsim:1; // this field is not used, but we keep it here so that old model files can be correctly loaded
     uint8_t   blightinv:1;
     uint8_t   stickScroll:1;
     uint8_t   speakerPitch;

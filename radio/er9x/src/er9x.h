@@ -714,35 +714,33 @@ uint8_t IS_EXPO_THROTTLE( uint8_t x ) ;
 #define PROTO_PPM16	     3
 
 #ifdef MULTI_PROTOCOL
-#define PROTO_PPMSIM     4
-#define PROTO_MULTI      5
- #ifdef SBUS_PROTOCOL	
-#define PROTO_SBUS       6
-#define PROT_MAX         6
- #else
-#define PROT_MAX         5
- #endif // SBUS_PROTOCOL
-#else
-#define PROTO_PPMSIM     4
+#define PROTO_MULTI      4
  #ifdef SBUS_PROTOCOL	
 #define PROTO_SBUS       5
 #define PROT_MAX         5
  #else
 #define PROT_MAX         4
  #endif // SBUS_PROTOCOL
+#else
+ #ifdef SBUS_PROTOCOL	
+#define PROTO_SBUS       4
+#define PROT_MAX         4
+ #else
+#define PROT_MAX         3
+ #endif // SBUS_PROTOCOL
 #endif // MULTI_PROTOCOL
 
 #ifdef MULTI_PROTOCOL
  #ifdef SBUS_PROTOCOL	
-#define PROT_STR "\006PPM   XJT   DSM2  PPM16 PPMSIMMULTI SBUS  "
+#define PROT_STR "\006PPM   XJT   DSM2  PPM16 MULTI SBUS  "
  #else
-#define PROT_STR "\006PPM   XJT   DSM2  PPM16 PPMSIMMULTI "
+#define PROT_STR "\006PPM   XJT   DSM2  PPM16 MULTI "
  #endif // SBUS_PROTOCOL
 #else
  #ifdef SBUS_PROTOCOL	
-#define PROT_STR "\006PPM   XJT   DSM2  PPM16 PPMSIMSBUS  "
+#define PROT_STR "\006PPM   XJT   DSM2  PPM16 SBUS  "
  #else
-#define PROT_STR "\006PPM   XJT   DSM2  PPM16 PPMSIM"
+#define PROT_STR "\006PPM   XJT   DSM2  PPM16 "
  #endif // SBUS_PROTOCOL
 #endif // MULTI_PROTOCOL
 

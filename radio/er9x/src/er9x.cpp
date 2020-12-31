@@ -4020,7 +4020,7 @@ static void perMain()
 		{
 			uint8_t pg ;
 			pg = PORTG ;
-    	if( (checkSlaveMode()) && (!g_eeGeneral.enablePpmsim))
+    	if( checkSlaveMode() )
 			{
     	    pg &= ~(1<<OUT_G_SIM_CTL); // 0=ppm out
     	}else{

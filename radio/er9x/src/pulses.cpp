@@ -192,13 +192,6 @@ void setupPulses()
   required_protocol = g_model.protocol ;
 	// Sort required_protocol depending on student mode and PPMSIM allowed
 
-	if ( g_eeGeneral.enablePpmsim )
-	{
-		if ( SlaveMode )
-		{
-			required_protocol = PROTO_PPMSIM ;			
-		}		
-	}
 	if ( PausePulses )
 	{
 		required_protocol = PROTO_NONE ;
@@ -268,13 +261,6 @@ void setupPulses()
             TCCR1B = (3 << WGM12) | (2<<CS10) ; // CTC ICR, 16MHz / 8
             break;
         case PROTO_PPM16 :
-				case PROTO_PPMSIM :
-					if ( required_protocol == PROTO_PPMSIM )
-					{
-            setupPulsesPPM(PROTO_PPMSIM);
-		        PORTB &= ~(1<<OUT_B_PPM);			// Hold PPM output low
-					}
-					else
 					{
 						setPpmTimers() ;
             setupPulsesPPM(PROTO_PPM16);
@@ -596,21 +582,6 @@ ISR(TIMER3_COMPB_vect) //2MHz pulse generation
 {
 	uint8_t proto = g_model.protocol ;
     sei() ;
-    if ( Current_protocol != proto )
-		{
-    	if ( Current_protocol == PROTO_PPMSIM )
-			{
-				if ( ( !SlaveMode ) || ( g_eeGeneral.enablePpmsim == 0 ) )
-				{
-        	setupPulses();
-					return ;
-				}
-				else
-				{
-					proto = PROTO_PPMSIM ;
-				}
-			}
-		}
     setupPulsesPPM(proto) ;
 }
 
