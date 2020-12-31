@@ -1114,7 +1114,7 @@ void simulatorDialog::setValues()
 	for ( i = 0 ; i < 16 ; i += 1 )
 	{
 		onoff[i] = 0 ;
-    if ( ( g_model.protocol == PROTO_PPM ) || ( g_model.protocol == PROTO_PPM16 ) )
+    if ( g_model.protocol == PROTO_PPM )
 		{
 			if ( i >= g_model.ppmStart )
 			{

@@ -818,11 +818,6 @@
            </item>
            <item>
             <property name="text">
-             <string>PPM16</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
              <string>MULTI</string>
             </property>
            </item>
