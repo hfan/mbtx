@@ -8662,7 +8662,7 @@ int16_t scaleAnalog( uint8_t channel )
 {
 #ifndef SIMU
 	int16_t v = anaIn( channel ) ;
-#if defined(CPUM128) || defined(CPUM2561)
+#if defined(STICK_DEADBAND)
 	int16_t mid ;
 	int16_t neg ;
 	int16_t pos ;
@@ -8699,7 +8699,7 @@ int16_t scaleAnalog( uint8_t channel )
 	v  =  v * (int32_t)RESX /  (max((int16_t)100,(v>0 ?
                                                     g_eeGeneral.calibSpanPos[channel] :
                                                     g_eeGeneral.calibSpanNeg[channel])));
-#endif
+#endif // STICK_DEADBAND
 #endif // SIMU
 	if(v <= -RESX) v = -RESX;
 	if(v >=  RESX) v =  RESX;
