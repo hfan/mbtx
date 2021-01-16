@@ -235,7 +235,7 @@ uint8_t fillTxBuffer( uint8_t *source, uint8_t type, uint8_t count )
 	return pdest - TxBuffer ;
 }
 
-#define ADC_VREF_TYPE 0x40
+#define ADC_EXTN_VREF 0x00 // use external VREF at the AREF PIN for ADC
 
 uint16_t s_anaFilt[8] ;
 
@@ -248,7 +248,7 @@ void getADC_osmp()
 		{
 //        temp_ana = 0 ;
 //        for (uint8_t i=0; i<2;i++) {  // Going from 10bits to 11 bits.  Addition = n.  Loop 2 times
-            ADMUX=adc_input|ADC_VREF_TYPE;
+            ADMUX=adc_input|ADC_EXTN_VREF;
             // Start the AD conversion
 #if defined(CPUM128) || defined(CPUM2561)
 			asm(" rjmp 1f") ;
@@ -614,7 +614,7 @@ static void ioinit0()
 	}
 #endif
 
-	ADMUX=ADC_VREF_TYPE;
+	ADMUX=ADC_EXTN_VREF;
 	ADCSRA=0x85 ;
 
 #ifdef CPUM2561

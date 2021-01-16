@@ -4130,13 +4130,14 @@ uint16_t anaIn(uint8_t chan)
 }
 
 
-#define ADC_VREF_TYPE 0x40
+#define ADC_AVCC_VREF 0x40 // use the AVCC as the VREF
+#define ADC_EXTN_VREF 0x00 // use external VREF at the AREF PIN for ADC
 //void getADC_filt()
 //{
 //    static uint16_t t_ana[2][8];
 //    //	uint8_t thro_rev_chan = g_eeGeneral.throttleReversed ? THR_STICK : 10 ;  // 10 means don't reverse
 //    for (uint8_t adc_input=0;adc_input<8;adc_input++){
-//        ADMUX=adc_input|ADC_VREF_TYPE;
+//        ADMUX=adc_input|ADC_EXTN_VREF;
 //        // Start the AD conversion
 //        ADCSRA|=0x40;
 //        // Do this while waiting
@@ -4171,7 +4172,7 @@ void getADC_osmp()
 #if defined(CPUM128) || defined(CPUM2561)
 					  ADMUX=adc_input | VrefType ;
 #else
-					  ADMUX=adc_input|ADC_VREF_TYPE;
+					  ADMUX=adc_input|ADC_EXTN_VREF;
 #endif
             // Start the AD conversion
 #if defined(CPUM128) || defined(CPUM2561)
@@ -4224,7 +4225,7 @@ void getADC_osmp()
 //    uint16_t result ;
 //    //	  uint8_t thro_rev_chan = g_eeGeneral.throttleReversed ? THR_STICK : 10 ;  // 10 means don't reverse
 //    for (uint8_t adc_input=0;adc_input<8;adc_input++){
-//        ADMUX=adc_input|ADC_VREF_TYPE;
+//        ADMUX=adc_input|ADC_EXTN_VREF;
 //        // Start the AD conversion
 //        ADCSRA|=0x40;
 //        // Wait for the AD conversion to complete
@@ -4243,7 +4244,7 @@ static void getADC_bandgap()
 #if defined(CPUM128) || defined(CPUM2561)
     ADMUX=0x1E | VrefType ;
 #else
-    ADMUX=0x1E|ADC_VREF_TYPE;
+    ADMUX=0x1E|ADC_EXTN_VREF;
 #endif
     // Start the AD conversion
     //  ADCSRA|=0x40;
@@ -4586,9 +4587,9 @@ extern uint8_t serialDat0 ;
 
 #if defined(CPUM128) || defined(CPUM2561)
 	  ADMUX=0x1E ; // Select bandgap and AREF
-		VrefType = 0 ;	// External VREF
+		VrefType = ADC_EXTN_VREF ;	// External VREF
 #else    
-		ADMUX=ADC_VREF_TYPE;
+		ADMUX=ADC_EXTN_VREF;
 #endif
     ADCSRA=0x85 ;
 
@@ -4653,7 +4654,7 @@ extern uint8_t serialDat0 ;
 	if ( ( VrefTest < 295 ) || ( VrefTest > 392 ) )
 #endif
 	{
-		VrefType = ADC_VREF_TYPE ;
+		VrefType = ADC_AVCC_VREF ;
 	}
   getADC_bandgap() ;
   getADC_bandgap() ;	// Twice to get a good value
@@ -5228,7 +5229,7 @@ void mainSequence()
 #if defined(CPUM128) || defined(CPUM2561)
   ADMUX=0x1E | VrefType ;     // Select bandgap
 #else
-  ADMUX=0x1E|ADC_VREF_TYPE;   // Select bandgap
+  ADMUX=0x1E|ADC_EXTN_VREF;   // Select bandgap
 #endif
 	pollRotary() ;
   perMain();      // Give bandgap plenty of time to settle
